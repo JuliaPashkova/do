@@ -38,7 +38,7 @@ function LoginModal({ onClose }) {
       return;
     }
 
-    fetch('/api/auth/login', {
+    fetch((import.meta.env.VITE_SERVER_URL??'')+'/api/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

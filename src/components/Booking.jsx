@@ -39,12 +39,12 @@ function Booking() {
   };
 
   useEffect(() => {
-    fetchData(import.meta.env.VITE_SERVER_URL??''+'/api/departments', setDepartments);
+    fetchData((import.meta.env.VITE_SERVER_URL??'')+'/api/departments', setDepartments);
   }, []);
 
   useEffect(() => {
     if (departmentId) {
-      fetchData(`/api/doctor-profiles/department/${departmentId}`, setDoctors);
+      fetchData((import.meta.env.VITE_SERVER_URL??'')+`/api/doctor-profiles/department/${departmentId}`, setDoctors);
     }
   }, [departmentId]);
 
@@ -79,7 +79,7 @@ function Booking() {
 
     if (doctorId) {
       const typeOfInsurance = insurance ? `?TypeOfInsurance=${insurance}` : '';
-      const url = import.meta.env.VITE_SERVER_URL??''+`/api/timeslots/doctor/${doctorId}${typeOfInsurance}`;
+      const url = `/api/timeslots/doctor/${doctorId}${typeOfInsurance}`;
 
       console.log(`Fetching slots from ${url}`);
 
@@ -204,20 +204,22 @@ function Booking() {
           </label>
           {doctorId ? (
             <>
-              <button 
-                type="button" 
-                className="info-button" 
-                onClick={() => handleMoreInfoClick(doctorId)}
-              >
-                mehr info
-              </button>
-              <button 
-                type="button" 
-                className="slot-button" 
-                onClick={fetchAvailableSlots}
-              >
-                Verfügbare Termine anzeigen
-              </button>
+              <div className="button-container">
+                <button
+                  type="button"
+                  className="info-button"
+                  onClick={() => handleMoreInfoClick(doctorId)}
+                >
+                  mehr info
+                </button>
+                <button
+                  type="button"
+                  className="slot-button"
+                  onClick={fetchAvailableSlots}
+                >
+                  Verfügbare Termine anzeigen
+                </button>
+              </div>
             </>
           ) : (
             <p>Bitte wählen Sie einen Arzt aus, um mehr Informationen zu sehen.</p>
@@ -231,10 +233,10 @@ function Booking() {
         <form onSubmit={handleBooking} className="step-container">
           <div className="slot-container">
             {availableSlots.map((slot) => (
-              <button 
-                key={slot.id} 
-                type="button" 
-                className="slot-button" 
+              <button
+                key={slot.id}
+                type="button"
+                className="slot-button"
                 onClick={() => handleSlotSelection(slot)}
                 style={{ backgroundColor: selectedSlot === slot ? '#f0f0f0' : '' }}
               >

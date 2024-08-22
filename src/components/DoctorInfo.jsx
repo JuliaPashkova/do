@@ -23,7 +23,7 @@ function DoctorInfo() {
       try {
         console.log('Starting fetch for doctor data');
 
-        const response = await fetch(`/api/doctor-profiles/${doctorId}`);
+        const response = await fetch((import.meta.env.VITE_SERVER_URL??'')+`/api/doctor-profiles/${doctorId}`);
         if (!response.ok) {
           throw new Error(`Failed to fetch doctor information. Status: ${response.status}`);
         }
@@ -33,7 +33,7 @@ function DoctorInfo() {
 
         if (data.departmentId) {
           try {
-            const departmentResponse = await fetch(`/api/departments/${data.departmentId}`);
+            const departmentResponse = await fetch((import.meta.env.VITE_SERVER_URL??'')+`/api/departments/${data.departmentId}`);
             if (!departmentResponse.ok) {
               throw new Error(`Failed to fetch department information. Status: ${departmentResponse.status}`);
             }
@@ -76,15 +76,17 @@ function DoctorInfo() {
   );
 
   return (
-    <div>
-      <h1>Informationen über den Arzt</h1>
-      {doctor?.photoUrl && (
-        <img src={doctor.photoUrl} alt={`${doctor.firstName} ${doctor.lastName}`} />
-      )}
-      <p>Dr. {doctor?.firstName || 'Nicht verfügbar'} {doctor?.lastName || 'Nicht verfügbar'}</p>
-      <p>Spezialisierung: {doctor?.specialization || 'Nicht verfügbar'}</p>
-      <p>Berufserfahrung: {doctor?.experienceYears ? `${doctor.experienceYears} Jahre` : 'Nicht verfügbar'}</p>
-      <button onClick={handleBackClick}>Zurück</button>
+    <div className="doctor-info-container">
+      <div className="doctor-info-box">
+        <h1>Informationen über den Arzt</h1>
+        {doctor?.photoUrl && (
+          <img src={doctor.photoUrl} alt={`${doctor.firstName} ${doctor.lastName}`} />
+        )}
+        <p>Dr. {doctor?.firstName || 'Nicht verfügbar'} {doctor?.lastName || 'Nicht verfügbar'}</p>
+        <p>Spezialisierung: {doctor?.specialization || 'Nicht verfügbar'}</p>
+        <p>Berufserfahrung: {doctor?.experienceYears ? `${doctor.experienceYears} Jahre` : 'Nicht verfügbar'}</p>
+        <button onClick={handleBackClick}>Zurück</button>
+      </div>
     </div>
   );
 }

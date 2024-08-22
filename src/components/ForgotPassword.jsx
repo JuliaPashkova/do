@@ -17,7 +17,7 @@ function ForgotPassword() {
     e.preventDefault();
     setLoading(true);
 
-    fetch('/api/auth-for-reset/forgot-password', {
+    fetch((import.meta.env.VITE_SERVER_URL??'')+'/api/auth-for-reset/forgot-password', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -62,7 +62,7 @@ function ForgotPassword() {
         <div className="forgot-password-box">
           <h1>Passwort vergessen</h1>
           <p>Eine E-Mail mit Anweisungen zum Zurücksetzen des Passworts wurde an {email} gesendet.</p>
-          <p>Sie werden in wenigen Sekunden auf die Seite zum Zurücksetzen des Passworts weitergeleitet.</p>
+         
           <button onClick={handleBack}>Zurück zum Login</button>
         </div>
       </div>

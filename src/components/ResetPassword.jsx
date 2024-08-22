@@ -70,7 +70,7 @@ function ResetPassword() {
   };
 
   return (
-    <div>
+    <div className='reset-password-container'>
       <h1>Passwort zurücksetzen</h1>
       <form onSubmit={handleSubmit}>
         <label>

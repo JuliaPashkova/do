@@ -13,10 +13,9 @@ h1, h2 {
 form {
   margin-bottom: 20px;
   max-width: 500px;
-  /* padding: 20px; */
   border-radius: 5px;
   background-color: var(--background-color);
-  border: 1px solid #ccc; /* Это можно оставить, если специфично для этого компонента */
+  border: 1px solid #ccc;
 }
 
 form label {
@@ -34,13 +33,14 @@ form input, form select {
 }
 
 form button {
-  background-color: var(--primary-color);
+  background-color: var(--button-color);
   color: white;
   padding: 10px 15px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   margin-right: 10px;
+  box-shadow: 0px 4px 6px var(--button-shadow-color);
 }
 
 form button:hover {
@@ -55,7 +55,7 @@ form button:hover {
 .doctor-list li {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Распределяет элементы внутри элемента li */
+  justify-content: space-between;
   margin-bottom: 10px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -79,25 +79,24 @@ form button:hover {
 }
 
 .doctor-list button {
-  background-color: #008CBA;
+  background-color: var(--button-color);
   color: white;
   padding: 5px 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   margin-left: 10px;
+  box-shadow: 0px 4px 6px var(--button-shadow-color);
 }
 
 .doctor-list button:hover {
-  background-color: #007bb5;
+  background-color: var(--button-hover-color);
 }
 
 .doctor-list button.delete {
-  background-color: #f44336;
+  background-color: #6a2d48; /* Сигнальный красный цвет для удаления */
 }
 
 .doctor-list button.delete:hover {
-  background-color: #e53935;
+  background-color: #803649; /* Цвет при наведении для сигнального красного */
 }
-
-

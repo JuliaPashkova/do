@@ -23,7 +23,7 @@ function User() {
       return;
     }
 
-    fetch(`/api/auth/profile?email=${encodeURIComponent(email)}`, {
+    fetch((import.meta.env.VITE_SERVER_URL??'')+`/api/auth/profile?email=${encodeURIComponent(email)}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -54,7 +54,7 @@ function User() {
       return;
     }
 
-    fetch('/api/appointments/my', {
+    fetch((import.meta.env.VITE_SERVER_URL??'')+'/api/appointments/my', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -91,7 +91,7 @@ function User() {
       return;
     }
 
-    fetch(`/api/users/${user.id}`, {
+    fetch((import.meta.env.VITE_SERVER_URL??'')+`/api/users/${user.id}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -126,7 +126,7 @@ function User() {
     const token = localStorage.getItem('token');
     const email = JSON.parse(localStorage.getItem('userDetails'))?.email;
 
-    fetch(`/api/users/by-email/${encodeURIComponent(email)}`, {
+    fetch((import.meta.env.VITE_SERVER_URL??'')+`/api/users/by-email/${encodeURIComponent(email)}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -147,7 +147,7 @@ function User() {
 
   const handleCancelAppointment = (appointmentId) => {
     const token = localStorage.getItem('token');
-    fetch(`/api/appointments/${appointmentId}/cancel`, {
+    fetch((import.meta.env.VITE_SERVER_URL??'')+`/api/appointments/${appointmentId}/cancel`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -267,7 +267,9 @@ function User() {
             </li>
           ))
         ) : (
-          <p>Keine Termine verfügbar</p>
+          <div className="appointment-message">
+            <p>Keine Termine verfügbar</p>
+          </div>
         )}
       </ul>
       <div className="user-actions">

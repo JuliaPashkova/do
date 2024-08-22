@@ -42,33 +42,33 @@ function Confirmation() {
     const token = localStorage.getItem('token');
 
     try {
-      // // Первый запрос: бронирование таймслота
-      // const bookingResponse = await fetch(`/api/timeslots/${appointmentDetails.id}/booking`, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Authorization': `Bearer ${token}`
-      //   },
-      //   body: JSON.stringify(appointmentDetails)
-      // });
+      // Первый запрос: бронирование таймслота
+      const bookingResponse = await fetch((import.meta.env.VITE_SERVER_URL??'')+`/api/timeslots/${appointmentDetails.id}/booking`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(appointmentDetails)
+      });
 
-      // const bookingText = await bookingResponse.text();
-      // let bookingData;
-      // try {
-      //   bookingData = JSON.parse(bookingText);
-      // } catch (e) {
-      //   console.log('Server returned a non-JSON response:', bookingText);
-      //   bookingData = bookingText; // Если это не JSON, сохраняем текст
-      // }
+      const bookingText = await bookingResponse.text();
+      let bookingData;
+      try {
+        bookingData = JSON.parse(bookingText);
+      } catch (e) {
+        console.log('Server returned a non-JSON response:', bookingText);
+        bookingData = bookingText; // Если это не JSON, сохраняем текст
+      }
 
-      // if (!bookingResponse.ok) {
-      //   throw new Error(bookingData.message || 'Fehler bei der Buchung des Termins.');
-      // }
+      if (!bookingResponse.ok) {
+        throw new Error(bookingData.message || 'Fehler bei der Buchung des Termins.');
+      }
 
-      // console.log('Buchung erfolgreich:', bookingData);
+      console.log('Buchung erfolgreich:', bookingData);
 
       // Второй запрос: подтверждение записи на прием
-      const appointmentResponse = await fetch(`/api/appointments/${appointmentDetails.id}/confirm`, {
+      const appointmentResponse = await fetch((import.meta.env.VITE_SERVER_URL??'')+`/api/appointments/${appointmentDetails.id}/confirm`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

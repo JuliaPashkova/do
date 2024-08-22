@@ -61,7 +61,7 @@ function AdminSchedule() {
     const fetchDoctors = async () => {
       setLoadingDoctors(true);
       try {
-        const data = await fetchWithToken('/api/doctor-profiles');
+        const data = await fetchWithToken((import.meta.env.VITE_SERVER_URL??'')+'/api/doctor-profiles');
         setDoctors(data);
       } catch (err) {
         handleError(err);
@@ -73,7 +73,7 @@ function AdminSchedule() {
     const fetchSlots = async () => {
       setLoadingSlots(true);
       try {
-        const data = await fetchWithToken('/api/timeslots');
+        const data = await fetchWithToken((import.meta.env.VITE_SERVER_URL??'')+'/api/timeslots');
         setSlots(data);
       } catch (err) {
         handleError(err);
@@ -85,7 +85,7 @@ function AdminSchedule() {
     const fetchDepartments = async () => {
       setLoadingDepartments(true);
       try {
-        const data = await fetchWithToken('/api/departments');
+        const data = await fetchWithToken((import.meta.env.VITE_SERVER_URL??'')+'/api/departments');
         setDepartments(data);
       } catch (err) {
         handleError(err);
@@ -116,7 +116,7 @@ function AdminSchedule() {
   const handleSlotSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await fetchWithToken('/api/timeslots', {
+      const data = await fetchWithToken((import.meta.env.VITE_SERVER_URL??'')+'/api/timeslots', {
         method: 'POST',
         body: JSON.stringify(schedule),
       });
@@ -139,7 +139,7 @@ function AdminSchedule() {
   const handleDeleteSlot = async (slotId) => {
     console.log('Deleting slot with id:', slotId);
     try {
-      await fetchWithToken(`/api/timeslots/${slotId}`, {
+      await fetchWithToken((import.meta.env.VITE_SERVER_URL??'')+`/api/timeslots/${slotId}`, {
         method: 'DELETE',
       });
       setSlots(slots.filter(slot => slot.id !== slotId));
@@ -190,7 +190,7 @@ function AdminSchedule() {
   const handleDeleteDoctor = async (doctorId) => {
     console.log('Deleting doctor with id:', doctorId);
     try {
-      await fetchWithToken(`/api/doctor-profiles/${doctorId}`, {
+      await fetchWithToken((import.meta.env.VITE_SERVER_URL??'')+`/api/doctor-profiles/${doctorId}`, {
         method: 'DELETE',
       });
       setDoctors(doctors.filter(doctor => doctor.id !== doctorId));
@@ -293,27 +293,33 @@ function AdminSchedule() {
           Foto URL:
           <input type="text" name="photoUrl" value={currentDoctor.photoUrl} onChange={handleDoctorChange} placeholder="Foto URL" />
         </label>
-        <button type="submit">{currentDoctor.id ? 'Ändern' : 'Hinzufügen'}</button>
-        <button type="button" onClick={() => setCurrentDoctor({
-          id: 0,
-          firstName: '',
-          lastName: '',
-          departmentId: 0,
-          specialization: '',
-          experienceYears: 0,
-          reviewId: 0,
-          photoUrl: '',
-        })}>Abbrechen</button>
+        <div className="button-container">
+          <button type="submit">{currentDoctor.id ? 'Ändern' : 'Hinzufügen'}</button>
+          <button type="button" onClick={() => setCurrentDoctor({
+            id: 0,
+            firstName: '',
+            lastName: '',
+            departmentId: 0,
+            specialization: '',
+            experienceYears: 0,
+            reviewId: 0,
+            photoUrl: '',
+          })}>Abbrechen</button>
+        </div>
       </form>
 
       <h2>Vorhandene Ärzte</h2>
       <ul className="doctor-list">
         {doctors.map(doctor => (
           <li key={`doctor-${doctor.id}`}>
-            {doctor.photoUrl && <img src={doctor.photoUrl} alt={`${doctor.firstName} ${doctor.lastName}`} style={{ width: '50px', height: '50px', borderRadius: '50%' }} />}
-            {doctor.firstName} {doctor.lastName} ({doctor.departmentId})
-            <button onClick={() => handleEditDoctor(doctor)}>Bearbeiten</button>
-            <button className="delete" onClick={() => handleDeleteDoctor(doctor.id)}>Löschen</button>
+            <div className="doctor-info">
+              {doctor.photoUrl && <img src={doctor.photoUrl} alt={`${doctor.firstName} ${doctor.lastName}`} style={{ width: '50px', height: '50px', borderRadius: '50%' }} />}
+              <span>{doctor.firstName} {doctor.lastName} ({doctor.departmentId})</span>
+            </div>
+            <div className="button-group">
+              <button onClick={() => handleEditDoctor(doctor)}>Bearbeiten</button>
+              <button className="delete" onClick={() => handleDeleteDoctor(doctor.id)}>Löschen</button>
+            </div>
           </li>
         ))}
       </ul>

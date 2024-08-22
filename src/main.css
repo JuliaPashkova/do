@@ -3,10 +3,10 @@
 /* Глобальные переменные */
 :root {
     --primary-color: #2d6a4f;
-    --secondary-color: #a5f6b6;
+    --secondary-color: #2d6a30;
     --background-color: #F9FBF7;
     --text-color: #333;
-    --button-color: #3a8a67;
+    --button-color: #2d6a4f;
     --button-hover-color: #2d6a30;
     --button-shadow-color: rgba(0, 0, 0, 0.1);
     

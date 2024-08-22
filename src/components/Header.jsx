@@ -13,12 +13,12 @@ function Header() {
         <Link to="/login">Login</Link>
         <Link to="/booking">Termin buchen</Link>
         <Link to="/adminSchedule">Admin</Link>
-        {/* <Link to="/confirmation">Confirmation</Link>
-        <Link to="/doctorInfo">DoctorInfo</Link>
-        <Link to="/user">User</Link>
-        <Link to="loginModal">Login Modal</Link>
-        <Link to="forgotPassword">Forgot Password</Link>
-        <Link to="resetPassword">Reset Password</Link> */} 
+        {/* <Link to="/confirmation">Confirmation</Link> */}
+        {/* <Link to="/doctorInfo">DoctorInfo</Link> */}
+        {/* <Link to="/user">User</Link> */}
+        {/* <Link to="loginModal">Login Modal</Link> */}
+        {/* <Link to="forgotPassword">Forgot Password</Link> */}
+        {/* <Link to="resetPassword">Reset Password</Link> */}
 
       </nav>
     </header>

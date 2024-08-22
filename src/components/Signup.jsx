@@ -53,7 +53,7 @@ function Signup() {
       return;
     }
 
-    fetch('/api/users-authentication/register', {
+    fetch((import.meta.env.VITE_SERVER_URL??'')+'/api/users-authentication/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -68,7 +68,7 @@ function Signup() {
       return response.text();
     })
     .then(data => {
-      alert('Registrierung erfolgreich! Sie können sich jetzt einloggen.');
+      alert('Die Registrierung ist fast abgeschlossen. Eine E-Mail wurde an Ihre Adresse gesendet, bitte folgen Sie dem beigefügten Link.');
       navigate('/login');
     })
     .catch(error => {
@@ -180,7 +180,7 @@ function Signup() {
               value={formData.password}
               onChange={handleChange}
               placeholder="Bitte geben Sie Ihr Passwort ein"
-              required
+              required 
             />
             <span
               onClick={() => setShowPassword(!showPassword)}
