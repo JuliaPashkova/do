@@ -40,7 +40,7 @@ function Login() {
       return;
     }
 
-    fetch((import.meta.env.VITE_SERVER_URL??'')+'/api/auth/login', {
+    fetch('http://209.38.249.121:8080/api/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
