@@ -39,7 +39,7 @@ function Booking() {
   };
 
   useEffect(() => {
-    fetchData('/api/departments', setDepartments);
+    fetchData(import.meta.env.VITE_SERVER_URL??''+'/api/departments', setDepartments);
   }, []);
 
   useEffect(() => {
@@ -79,7 +79,7 @@ function Booking() {
 
     if (doctorId) {
       const typeOfInsurance = insurance ? `?TypeOfInsurance=${insurance}` : '';
-      const url = `/api/timeslots/doctor/${doctorId}${typeOfInsurance}`;
+      const url = import.meta.env.VITE_SERVER_URL??''+`/api/timeslots/doctor/${doctorId}${typeOfInsurance}`;
 
       console.log(`Fetching slots from ${url}`);
 
