@@ -1,0 +1,145 @@
+/* User.css */
+
+.user-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.user-info {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 30px;
+    text-align: left;
+    display: flex;              /* Добавлено для использования флекс-бокса */
+    flex-direction: column;     /* Элементы внутри будут располагаться по вертикали */
+    align-items: center;        /* Центрирование элементов по горизонтали */
+}
+
+.user-info p,
+.user-info label {
+    width: 100%; /* Оставляем текст выровненным по левому краю, занимая всю ширину */
+    text-align: left; /* Выравнивание текста по левому краю */
+}
+
+.edit-button {
+    margin-right: 0;  /* Убираем отступ справа */
+    align-self: center; /* Центрирование кнопки относительно родителя */
+    text-align: center; /* Центрирование текста внутри кнопки */
+}
+
+.user-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; /* Центрирование кнопок внутри блока */
+    gap: 10px; /* Отступы между кнопками */
+}
+
+.user-info label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.user-info input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.user-info p {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.user-actions {
+    margin-top: 20px;
+}
+
+.appointment-history {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.appointment-history li, 
+.appointment-message {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+}
+
+.appointment-message {
+    justify-content: center;
+}
+
+.user-container h1, .user-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.edit-button, .save-button, .cancel-button, .logout-button, .delete-account-button, .cancel-button {
+    padding: 10px 20px;
+    background-color: #2d666a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+.save-button {
+    background-color: #28a745;
+}
+
+.cancel-button {
+    background-color: #dc3545;
+}
+
+.logout-button {
+    background-color: #17a2b8;
+}
+
+.delete-account-button {
+    background-color: #dc3545;
+}
+
+.edit-button:hover, .save-button:hover, .cancel-button:hover, .logout-button:hover, .delete-account-button:hover {
+    background-color: #0056b3;
+}
+
+.save-button:hover {
+    background-color: #218838;
+}
+
+.cancel-button:hover {
+    background-color: #c82333;
+}
+
+.logout-button:hover {
+    background-color: #138496;
+}
+
+.delete-account-button:hover {
+    background-color: #c82333;
+}
